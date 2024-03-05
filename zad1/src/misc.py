@@ -4,4 +4,6 @@ def horner(x, wspolczynniki, stopien):
         wynik = i + (x * wynik)
     return wynik
 
-print(horner(0.432, [1,3,-5,1], 3))
+def szacowanie_dokladnosci():
+    return 0
+
