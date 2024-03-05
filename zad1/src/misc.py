@@ -4,6 +4,9 @@ def horner(x, wspolczynniki, stopien):
         wynik = i + (x * wynik)
     return wynik
 
-def szacowanie_dokladnosci():
-    return 0
+def szacowanie_dokladnosci(b,a,e):
+    if (abs(a-b) < e):
+        return True
+    else:
+        return False
 
