@@ -6,7 +6,7 @@ def medotaBisekcji(a,b):
     x2=float(b)
     x3=float((x1+x2)/2)
     x= misc.horner(x3, f, 3)
-    while x != 0 and not misc.szacowanie_dokladnosci(x1 , x2 ,0.00000000000000001):
+    while (x != 0 and not misc.szacowanie_dokladnosci(x1 , x2 ,0.00000000000000001)) and i < 100:
         i += 1
         print(x1, " x1")
         print(x2, " x2")
