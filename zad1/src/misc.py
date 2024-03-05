@@ -1,7 +1,7 @@
 def horner(x, wspolczynniki, stopien):
-    wynik = wspolczynniki[0]
+    wynik = float(wspolczynniki[0])
     for i in wspolczynniki[1:]:
-        wynik = i + (x * wynik)
+        wynik = float(i) + float((float(x) * float(wynik)))
     return wynik
 
 def szacowanie_dokladnosci(b,a,e):
