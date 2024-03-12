@@ -37,10 +37,11 @@ def sinus(x):
 
 def wykldanicza(x):
     # wartosc funkcji (1/3)^x
-    return (1/3)**x - float(5)
+    return (1/3)**float(x) - float(5)
 
 
 def zlozenie(x):
+    # TODO prostszą trzeba troche dać i niekoniecznie złożoną ze wcześniejszych
     return sinus(x) + horner(x) * wykldanicza(x)
 
 def pochodne(x, typ):
@@ -52,7 +53,7 @@ def pochodne(x, typ):
             wynik = (float(wynik) * float(x)) + i
         return wynik
     elif typ == 2:
-        return 60*math.cos(math.radians(x*3))
-    elif typ ==3:
-        return -3**(-x)*math.log(3)
-    
+        return 60*math.cos(math.radians(float(x)*3))
+    elif typ == 3:
+        return -3**(-float(x))*math.log(3)
+    #TODO: pochodna dla funkcji złożonej
