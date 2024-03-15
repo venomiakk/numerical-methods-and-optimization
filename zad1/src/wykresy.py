@@ -13,7 +13,7 @@ def rysuj(x, typ, a, b):
     for i in x_values:
         y_values.append(misc.obliczanieWartosciFunkcji(i, typ))
     
-
+    # TODO: rysowanie większych wykresów
     fig, ax = plt.subplots()
     ax.plot(x_values, y_values)
     ax.scatter(x, misc.obliczanieWartosciFunkcji(x, typ), color="green", label="x0")

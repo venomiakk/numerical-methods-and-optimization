@@ -23,10 +23,9 @@ def oblicz(a, b, typ, warunek, war_stop):
     x1 = a
     x2 = b
     i = 0
-    eps = 0
+
     if warunek == 1:
         while (i < war_stop) and (misc.obliczanieWartosciFunkcji(x0, typ) != 0.0):
-            # print(misc.obliczanieWartosciFunkcji(x0, typ),"\n")
             if misc.pochodne(x2,typ) == 0:
                 print("pochodna rowna 0, zatrzymanie obliczen")
                 return
@@ -35,7 +34,6 @@ def oblicz(a, b, typ, warunek, war_stop):
             x2 = x1
             x1 = x0
             i += 1
-            eps = abs(war_stop - x0) 
     else:
         while (not misc.szacowanie_dokladnosci(x1, x2, war_stop)) and (misc.obliczanieWartosciFunkcji(x0, typ) != 0.0):
             if misc.pochodne(x2,typ) == 0:
@@ -45,21 +43,28 @@ def oblicz(a, b, typ, warunek, war_stop):
             x2 = x1
             x1 = x0
             i += 1
-            eps = abs(war_stop - x0) 
-    
-    print(f'x = {x0}, iteracji: {i}, dokladnosc: {eps}')
+
+    print(f'x = {x0}, iteracji: {i}')
     wykresy.rysuj(x0, typ, a, b)
 
 #! Dla tego przykładu znajduje pierwiastek z poza przedziału
 #? Może dlatego że (0.5+1.5) / 2 = 1 --> f(1) = 0
 # oblicz(0.5, 1.5, 1, 1, 200)
 # TODO: Znaleźć takie dziwne przypadki do wnisków
+# oblicz(0.58, 2, 1, 1, 20) 
 
+    
 # *Sprawozdanie
-oblicz(-0.5, 0.5, 1, 1, 200)
+# oblicz(0.6, 2, 1, 1, 20) 
+# oblicz(0.6, 2, 1, 2, 0.001) 
 
-# oblicz(0.5, 1.5, 2, 1, 20)
+# oblicz(-0.5, 0.7, 2, 1, 20)
+# oblicz(-0.5, 0.7, 2, 2, 0.001)
+
+# oblicz(-1, 2, 3, 1, 20) 
+# oblicz(-1, 2, 3, 2, 0.001)
     
-# oblicz(-3, 3, 3, 2, 0.00001)
-    
-# oblicz(0, 1, 4, 2, 0.000001)
+# oblicz(-0.5, 1, 4, 1, 20)
+# oblicz(-0.5, 1, 4, 2, 0.001)
+
+#* Patrzyłem jeszcze i te warunki które sprawdzają czy wynik jest już 0 faktycznie nie mają chyba sensu i na nic nie wpływają

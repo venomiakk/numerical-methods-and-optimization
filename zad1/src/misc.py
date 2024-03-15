@@ -40,7 +40,7 @@ def sinus(x):
 
 def wykldanicza(x):
     # wartosc funkcji (1/3)^x - 5
-    return (1/3)**float(x) - float(5)
+    return (1/3)**float(x) - 1.0
 
 
 def zlozenie(x):
@@ -61,4 +61,4 @@ def pochodne(x, typ):
     elif typ == 3:
         return -3**(-float(x))*math.log(3)
     elif typ == 4:
-        return -20 * 3**(1-float(x)) * math.cos((3*(3**(-float(x)) - 5))) * math.log(3)
+        return -20 * 3**(1-float(x)) * math.cos((3*(3**(-float(x)) - 1))) * math.log(3)

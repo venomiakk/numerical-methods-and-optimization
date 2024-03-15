@@ -3,7 +3,6 @@ import wykresy
 
 def metodaBisekcji(a, b, typ, warunek, war_stop):
     
-    eps = 0
     x1 = float(a)
     x2 = float(b)
     if ((misc.obliczanieWartosciFunkcji(x1,typ) * misc.obliczanieWartosciFunkcji(x2, typ)) > 0):
@@ -11,7 +10,7 @@ def metodaBisekcji(a, b, typ, warunek, war_stop):
         return
     
     x3 = float((x1 + x2) / 2)
-    x = misc.obliczanieWartosciFunkcji(x3, typ)
+    # x = misc.obliczanieWartosciFunkcji(x3, typ)
     i = 0
     if warunek == 1:    
         while (i < war_stop) and (misc.obliczanieWartosciFunkcji(x3, typ) != 0):
@@ -20,9 +19,10 @@ def metodaBisekcji(a, b, typ, warunek, war_stop):
                 x2 = x3
             else:
                 x1 = x3
-            x = misc.obliczanieWartosciFunkcji(x3, typ)
+
+            # x = misc.obliczanieWartosciFunkcji(x3, typ)
             x3 = float((x1 + x2) / 2)
-            eps = abs(war_stop - x3)
+
     else:    
         while (not misc.szacowanie_dokladnosci(x1, x2, war_stop)) and (misc.obliczanieWartosciFunkcji(x3, typ) != 0):
             i += 1
@@ -30,19 +30,24 @@ def metodaBisekcji(a, b, typ, warunek, war_stop):
                 x2 = x3
             else:
                 x1 = x3
-            x = misc.obliczanieWartosciFunkcji(x3, typ)
+
+            # x = misc.obliczanieWartosciFunkcji(x3, typ)
             x3 = float((x1 + x2) / 2)
-            eps = abs(war_stop - x3)
     
-    print(f'x = {x3}, iteracji: {i}, dokladnosc: {eps}')
+    print(f'x = {x3}, iteracji: {i}')
     wykresy.rysuj(x3, typ, a, b)
 
+
 # *Sprawozdanie
+# metodaBisekcji(0.6, 2, 1, 1, 20)
+# metodaBisekcji(0.6, 2, 1, 2, 0.001)
 
-# metodaBisekcji(-0.5, 0.5, 1, 1, 200)
 
-# metodaBisekcji(0.5, 1.5, 2, 2, 0.00001)
+# metodaBisekcji(-0.5, 0.7, 2, 1, 20)
+# metodaBisekcji(-0.5, 1, 2, 2, 0.001)
 
-# metodaBisekcji(-3, 3, 3, 1, 22)
-    
-# metodaBisekcji(0, 1, 4, 2, 0.00001)
+# metodaBisekcji(-1, 2, 3, 1, 20)
+# metodaBisekcji(-1, 2, 3, 2, 0.001)
+
+# metodaBisekcji(-0.5, 1, 4, 1, 20)
+# metodaBisekcji(-0.5, 1, 4, 2, 0.001)
