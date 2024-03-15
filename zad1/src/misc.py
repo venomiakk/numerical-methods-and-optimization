@@ -23,6 +23,7 @@ def szacowanie_dokladnosci(b, a, e):
 
 
 def horner(x):
+    # x^3 + 3x^2 - 5x + 1
     wsp = [1.0, 3.0, -5.0, 1.0]
     wynik = float(wsp[0])
     for i in wsp[1:]:
@@ -32,17 +33,20 @@ def horner(x):
 
 def sinus(x):
     # obliczanie wartosci funkcji 20sin(3x)
-    return 20 * math.sin(math.radians(3 * float(x)))
+    # TODO: Radiany czy stopnie?... Stopnie nie działają dla złożenia
+    # return 20 * math.sin(math.radians(3 * float(x)))
+    return 20 * math.sin(3 * float(x))
 
 
 def wykldanicza(x):
-    # wartosc funkcji (1/3)^x
+    # wartosc funkcji (1/3)^x - 5
     return (1/3)**float(x) - float(5)
 
 
 def zlozenie(x):
-    # TODO prostszą trzeba troche dać i niekoniecznie złożoną ze wcześniejszych
-    return sinus(x) + horner(x) * wykldanicza(x)
+    # return sinus(x) + horner(x) * wykldanicza(x)
+    return sinus(wykldanicza(x))
+    # return 20 * math.sin((3 * float(((1/3)**float(x)) - 5)))
 
 def pochodne(x, typ):
     typ = int(typ)
@@ -56,4 +60,5 @@ def pochodne(x, typ):
         return 60*math.cos(math.radians(float(x)*3))
     elif typ == 3:
         return -3**(-float(x))*math.log(3)
-    #TODO: pochodna dla funkcji złożonej
+    elif typ == 4:
+        return -20 * 3**(1-float(x)) * math.cos((3*(3**(-float(x)) - 5))) * math.log(3)

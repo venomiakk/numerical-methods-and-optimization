@@ -3,4 +3,5 @@ import interface
 
 interface.interface()
 
-#TODO Funkcja złożona musi być inna bo nie wyrabia programik żeby znaleźć x0 z dokładnością 0.001
+#TODO: Obliczanie dokładności
+#TODO: Zweryfikowanie czy potrzebne są warnuki w pętlach o tym że f(x0) = 0

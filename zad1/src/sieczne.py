@@ -6,6 +6,10 @@ def wyznaczanie_pierwiastka(xn, xn1, typ):
     xn1 = float(xn1)
     fn = misc.obliczanieWartosciFunkcji(xn, typ)
     fn1 = misc.obliczanieWartosciFunkcji(xn1, typ)
+    
+    if fn-fn1 == 0.0:
+        return xn
+    
     return xn - ((fn * (xn - xn1)) / (fn - fn1))
 
 def oblicz(a, b, typ, warunek, war_stop):
@@ -15,12 +19,14 @@ def oblicz(a, b, typ, warunek, war_stop):
     if misc.pochodne(a,typ) == 0:
         print("pochodna rowna 0, zatrzymanie obliczen")
         return   
-    x0 = 0
+    x0 = wyznaczanie_pierwiastka(a,b, typ)
     x1 = a
     x2 = b
     i = 0
+    eps = 0
     if warunek == 1:
-        while i < war_stop:
+        while (i < war_stop) and (misc.obliczanieWartosciFunkcji(x0, typ) != 0.0):
+            # print(misc.obliczanieWartosciFunkcji(x0, typ),"\n")
             if misc.pochodne(x2,typ) == 0:
                 print("pochodna rowna 0, zatrzymanie obliczen")
                 return
@@ -29,8 +35,9 @@ def oblicz(a, b, typ, warunek, war_stop):
             x2 = x1
             x1 = x0
             i += 1
+            eps = abs(war_stop - x0) 
     else:
-        while not misc.szacowanie_dokladnosci(x1, x2, war_stop):
+        while (not misc.szacowanie_dokladnosci(x1, x2, war_stop)) and (misc.obliczanieWartosciFunkcji(x0, typ) != 0.0):
             if misc.pochodne(x2,typ) == 0:
                 print("pochodna rowna 0, zatrzymanie obliczen")
                 return
@@ -38,6 +45,21 @@ def oblicz(a, b, typ, warunek, war_stop):
             x2 = x1
             x1 = x0
             i += 1
+            eps = abs(war_stop - x0) 
     
-    print(f'x = {x0:.6f}, iteracji: {i}')
+    print(f'x = {x0}, iteracji: {i}, dokladnosc: {eps}')
     wykresy.rysuj(x0, typ, a, b)
+
+#! Dla tego przykładu znajduje pierwiastek z poza przedziału
+#? Może dlatego że (0.5+1.5) / 2 = 1 --> f(1) = 0
+# oblicz(0.5, 1.5, 1, 1, 200)
+# TODO: Znaleźć takie dziwne przypadki do wnisków
+
+# *Sprawozdanie
+oblicz(-0.5, 0.5, 1, 1, 200)
+
+# oblicz(0.5, 1.5, 2, 1, 20)
+    
+# oblicz(-3, 3, 3, 2, 0.00001)
+    
+# oblicz(0, 1, 4, 2, 0.000001)
