@@ -57,3 +57,6 @@ def metodaBisekcji(a, b, typ, warunek, war_stop):
 # metodaBisekcji(0.5, 2, 1, 1, 20)
 #2
 # metodaBisekcji(-0.9, 0.6, 2, 1, 20)
+    
+#x^2
+# metodaBisekcji(-1, 1, 5, 1, 20)

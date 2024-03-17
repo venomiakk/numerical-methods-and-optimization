@@ -12,8 +12,12 @@ def obliczanieWartosciFunkcji(x, typ):
         war = wykldanicza(x)
     if typ == 4:
         war = zlozenie(x)
+    if typ == 5:
+        war = x2(x)
     return float(war)
 
+def x2(x):
+    return x**2
 
 def szacowanie_dokladnosci(b, a, e):
     if (abs(float(a) - float(b)) < e):
@@ -61,3 +65,5 @@ def pochodne(x, typ):
         return -3**(-float(x))*math.log(3)
     elif typ == 4:
         return -20 * 3**(1-float(x)) * math.cos((3*(3**(-float(x)) - 1))) * math.log(3)
+    elif typ == 5:
+        return 2*x
