@@ -67,7 +67,7 @@ def oblicz(a, b, typ, warunek, war_stop):
 #1
 # oblicz(0.5, 1.5, 1, 1, 20) 
 #2
-oblicz(-0.9, 0.6, 2, 1, 20)
+# oblicz(-0.9, 0.6, 2, 1, 20)
 
 #x^2
 # oblicz(-1, 1, 5, 1, 20)
