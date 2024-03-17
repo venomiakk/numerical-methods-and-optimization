@@ -47,11 +47,6 @@ def oblicz(a, b, typ, warunek, war_stop):
     print(f'x = {x0}, iteracji: {i}')
     wykresy.rysuj(x0, typ, a, b)
 
-#! Dla tego przykładu znajduje pierwiastek z poza przedziału
-#? Może dlatego że (0.5+1.5) / 2 = 1 --> f(1) = 0
-# oblicz(0.5, 1.5, 1, 1, 200)
-# TODO: Znaleźć takie dziwne przypadki do wnisków
-# oblicz(0.58, 2, 1, 1, 20) 
 
     
 # *Sprawozdanie
@@ -66,5 +61,10 @@ def oblicz(a, b, typ, warunek, war_stop):
     
 # oblicz(-0.5, 1, 4, 1, 20)
 # oblicz(-0.5, 1, 4, 2, 0.001)
+    
 
-#* Patrzyłem jeszcze i te warunki które sprawdzają czy wynik jest już 0 faktycznie nie mają chyba sensu i na nic nie wpływają
+#! problemy
+#1
+# oblicz(0.5, 1.5, 1, 1, 20) 
+#2
+# oblicz(-0.9, 0.6, 2, 1, 20)

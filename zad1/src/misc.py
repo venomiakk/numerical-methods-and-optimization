@@ -33,7 +33,6 @@ def horner(x):
 
 def sinus(x):
     # obliczanie wartosci funkcji 20sin(3x)
-    # TODO: Radiany czy stopnie?... Stopnie nie działają dla złożenia
     # return 20 * math.sin(math.radians(3 * float(x)))
     return 20 * math.sin(3 * float(x))
 
