@@ -10,7 +10,6 @@ def metodaBisekcji(a, b, typ, warunek, war_stop):
         return
     
     x3 = float((x1 + x2) / 2)
-    # x = misc.obliczanieWartosciFunkcji(x3, typ)
     i = 0
     if warunek == 1:    
         while (i < war_stop) and (misc.obliczanieWartosciFunkcji(x3, typ) != 0):
@@ -20,7 +19,6 @@ def metodaBisekcji(a, b, typ, warunek, war_stop):
             else:
                 x1 = x3
 
-            # x = misc.obliczanieWartosciFunkcji(x3, typ)
             x3 = float((x1 + x2) / 2)
 
     else:    
@@ -31,7 +29,6 @@ def metodaBisekcji(a, b, typ, warunek, war_stop):
             else:
                 x1 = x3
 
-            # x = misc.obliczanieWartosciFunkcji(x3, typ)
             x3 = float((x1 + x2) / 2)
     
     print(f'x = {x3}, iteracji: {i}')

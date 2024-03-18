@@ -30,7 +30,6 @@ def oblicz(a, b, typ, warunek, war_stop):
                 print("pochodna rowna 0, zatrzymanie obliczen")
                 return
             x0 = wyznaczanie_pierwiastka(x1,x2, typ)
-            # TODO: sprawdzic czy nie zamienic x1 z x2 po wyznacznaniu pierwiastka
             x2 = x1
             x1 = x0
             i += 1

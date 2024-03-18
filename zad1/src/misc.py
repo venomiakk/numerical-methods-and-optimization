@@ -37,7 +37,6 @@ def horner(x):
 
 def sinus(x):
     # obliczanie wartosci funkcji 20sin(3x)
-    # return 20 * math.sin(math.radians(3 * float(x)))
     return 20 * math.sin(3 * float(x))
 
 
@@ -47,9 +46,7 @@ def wykldanicza(x):
 
 
 def zlozenie(x):
-    # return sinus(x) + horner(x) * wykldanicza(x)
     return sinus(wykldanicza(x))
-    # return 20 * math.sin((3 * float(((1/3)**float(x)) - 5)))
 
 def pochodne(x, typ):
     typ = int(typ)
