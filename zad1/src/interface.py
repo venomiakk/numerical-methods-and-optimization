@@ -1,5 +1,8 @@
 import metodaBisekcji
 import sieczne
+from zad2 import gausseMethod
+
+
 def interface():
     print("Wybierz funkcje:\n1. Wielomian \n2. Funkcja trygonometryczna\n3. Funkcja wykladnicza\n4. Funkcja zlozona")
     y = input()
@@ -8,7 +11,7 @@ def interface():
     print("Wybierz warunek zatrzymania:\n1. Ilosc iteracji\n2. Dokładność wyznaczania pierwiastka")
     z = input()
     z = int(z)
-    if z==2 :
+    if z == 2:
         print("Podaj dokladnosc: ")
     else:
         print("Podaj liczbe iteracji")
@@ -26,3 +29,6 @@ def interface():
         print("b:")
         b = input()
         sieczne.oblicz(a, b, y, z, e)
+
+
+
