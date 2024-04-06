@@ -6,8 +6,8 @@ def interface():
 def zad2():
     m = gausseMethod.matrix()
     m.zad2()
-    if m.checkConvergence():
-        print("gitara")
-    m.gausseWithpcme()
+    # if m.checkConvergence():
+    #     print("gitara")
+    m.gausse(1)
 
 zad2()
