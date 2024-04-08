@@ -28,7 +28,7 @@ class matrix():
         for i in range(index, self.numRow):
             max = i
             for j in range(index, self.numRow):
-                if matrix[max][index] < matrix[j][index]:
+                if abs(matrix[max][index]) < abs(matrix[j][index]):
                     max = j
                 pom = matrix[max]
                 matrix[max] = matrix[i]
@@ -53,7 +53,7 @@ class matrix():
         max = [index, index]
         for i in range(index, self.numRow):
             for j in range(index, self.numRow):
-                if matrix[max[0]][max[1]] < matrix[i][j]:
+                if abs(matrix[max[0]][max[1]]) < abs(matrix[i][j]):
                     max=[i,j]
         pom = matrix[index]
         matrix[index] = matrix[max[0]]

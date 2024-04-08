@@ -8,6 +8,6 @@ def zad2():
     m.zad2()
 
     # 0 - partly, 1 - fully
-    m.gausse(0)
+    m.gausse(1)
 
 zad2()
