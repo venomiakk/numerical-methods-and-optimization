@@ -24,15 +24,12 @@ class matrix():
     #TODO dodac wykrywanie 0 i sprawdzanie wtedy max dla kolumny
 
     def partlyChosenMainElement(self, index, matrix):
-
-        for i in range(index, self.numRow):
-            max = i
-            for j in range(index, self.numRow):
-                if abs(matrix[max][index]) < abs(matrix[j][index]):
-                    max = j
-                pom = matrix[max]
-                matrix[max] = matrix[i]
-                matrix[i] = pom
+        for j in range(index, self.numRow):
+            if abs(matrix[max][index]) < abs(matrix[j][index]):
+                max = j
+            pom = matrix[max]
+            matrix[max] = matrix[j]
+            matrix[j] = pom
         if matrix[index][index] == 0:
         #     for i in range(index, self.numRow):
         #         max = i
