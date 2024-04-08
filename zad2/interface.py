@@ -6,8 +6,8 @@ def interface():
 def zad2():
     m = gausseMethod.matrix()
     m.zad2()
-    # if m.checkConvergence():
-    #     print("gitara")
-    m.gausse(1)
+
+    # 0 - partly, 1 - fully
+    m.gausse(0)
 
 zad2()

@@ -34,18 +34,18 @@ class matrix():
                 matrix[max] = matrix[i]
                 matrix[i] = pom
         if matrix[index][index] == 0:
-            for i in range(index, self.numRow):
-                max = i
-                for j in range(index, self.numRow):
-                    if matrix[index][max] < matrix[index][max]:
-                        max = j
-                    for k in range(index, self.numRow):
-                        pom = matrix[k][max]
-                        matrix[k][max] = matrix[k][index]
-                        matrix[k][index] = pom
-                self.veriables[index] = max
-                self.veriables[max] = index
-        if matrix[index][index] == 0:
+        #     for i in range(index, self.numRow):
+        #         max = i
+        #         for j in range(index, self.numRow):
+        #             if matrix[index][max] < matrix[index][max]:
+        #                 max = j
+        #             for k in range(index, self.numRow):
+        #                 pom = matrix[k][max]
+        #                 matrix[k][max] = matrix[k][index]
+        #                 matrix[k][index] = pom
+        #         self.veriables[index] = max
+        #         self.veriables[max] = index
+        # if matrix[index][index] == 0:
             self.condiction = 1
         return matrix
 
