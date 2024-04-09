@@ -5,7 +5,7 @@ def metodaBisekcji(a, b, typ, warunek, war_stop):
     
     x1 = float(a)
     x2 = float(b)
-    if ((misc.obliczanieWartosciFunkcji(x1,typ) * misc.obliczanieWartosciFunkcji(x2, typ)) > 0):
+    if ((misc.obliczanieWartosciFunkcji(x1,typ) * misc.obliczanieWartosciFunkcji(x2, typ)) >= 0):
         print("Zly przedzial, zatrzymanie obliczen")
         return
     
@@ -31,8 +31,9 @@ def metodaBisekcji(a, b, typ, warunek, war_stop):
 
             x3 = float((x1 + x2) / 2)
     
-    print(f'x = {x3}, iteracji: {i}')
-    wykresy.rysuj(x3, typ, a, b)
+    print(f'metoda bisekcji: x = {x3}, iteracji: {i}')
+    # wykresy.rysuj(x3, typ, a, b)
+    return x3
 
 
 # *Sprawozdanie

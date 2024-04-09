@@ -43,9 +43,9 @@ def oblicz(a, b, typ, warunek, war_stop):
             x1 = x0
             i += 1
 
-    print(f'x = {x0}, iteracji: {i}')
-    wykresy.rysuj(x0, typ, a, b)
-
+    print(f'metoda siecznych: x = {x0}, iteracji: {i}')
+    # wykresy.rysuj(x0, typ, a, b)
+    return x0
 
     
 # *Sprawozdanie
