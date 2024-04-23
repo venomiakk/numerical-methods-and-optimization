@@ -46,3 +46,22 @@ def sinus(x):
 def zlozenie(x):
     return modul(horner(x, [3.0, 2.0, -3.0, -2.0]))
 
+
+def pochodne(x, typ):
+    typ = int(typ)
+    if typ == 1:
+        return 1.0 / 3.0
+    elif typ == 2:
+        return (2 * x) / (abs(x))
+    elif typ == 3:
+        wsp = [9.0, 4.0, -3.0]
+        wynik = float(wsp[0])
+        for i in wsp[1:]:
+            wynik = (float(wynik) * float(x)) + i
+        return wynik
+    elif typ == 4:
+        return 6.0 * math.cos(3.0 * x)
+    elif typ == 5:
+        return ((2.0 * ((9.0 * x * x) + (4.0 * x) - 3.0) *
+                ((3.0 * x * x * x) + (2.0 * x * x) - (3.0 * x) - 2.0)) /
+                (abs((-3.0 * x * x * x) - (2.0 * x * x) + (3.0 * x) + 2.0)))
