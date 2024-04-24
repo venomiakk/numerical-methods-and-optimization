@@ -8,9 +8,9 @@ def rysuj(typ, a, b, interpolacja=0, nodes=0, funkcja=0):
     @param typ: rodzaj funkcji: 1 - 5
     @param a: lewy przedzial
     @param b: prawy przedzial
-    @param interpolacja:
-    @param nodes:
-    @param funkcja:
+    @param interpolacja: 0 - nie, w innym wypadku tak
+    @param nodes: wezly interpolacji
+    @param funkcja: funkcja interpolacyjna
     """
     a = float(a)
     b = float(b)
@@ -41,9 +41,11 @@ def rysuj(typ, a, b, interpolacja=0, nodes=0, funkcja=0):
         ax.plot(x_values, iy_values, label="Funkcja interpolacyjna", linestyle="--")
         plt.legend()
         for i in nodes:
-            ax.scatter(i, misc.obliczanieWartosciFunkcji(i, typ), color="green", s=20)
+            ax.scatter(i, misc.obliczanieWartosciFunkcji(i, typ), color="green", s=25, zorder=3)
     
     ax.grid(True)
     ax.axhline(0, color='black', linewidth=0.5)
     ax.axvline(0, color='black', linewidth=0.5)
+
     plt.show()
+    return fig

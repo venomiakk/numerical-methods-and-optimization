@@ -1,3 +1,4 @@
+import numpy as np
 from sympy import *
 import misc
 
@@ -27,5 +28,12 @@ def lagrange(typ, xnodes):
     L = simplify(L)
     print("L: ")
     pretty_print(L)
-    return Lambda(x, L)
+    f = Lambda(x, L)
+
+    points = np.linspace(xnodes[0], xnodes[-1], 100)
+    dif = [abs(f(x) - misc.obliczanieWartosciFunkcji(x, typ)) for x in points]
+    print(f'Najwieksza roznica: {np.max(dif):.2f} dla x = {points[dif.index(np.max(dif))]:.2f}')
+
+
+    return f
 
