@@ -46,9 +46,11 @@ def console_interface():
     return 0
 
 
-def draw_graph(selection, root):
+def draw_graph(selection, root, fa_val, fb_val):
     funkcja = selection.current() + 1
-    fig = wykresy.rysuj(funkcja, -1.5, 1.5)
+    a = float(fa_val.get())
+    b = float(fb_val.get())
+    fig = wykresy.rysuj(funkcja, a, b)
 
     canvas = FigureCanvasTkAgg(fig, master=root)
     canvas.draw()
@@ -98,21 +100,41 @@ def gui_interface():
     root.geometry("880x600")
     root.title("Interpolacja")
 
+    validate_float = root.register(only_float)
+    validate_int = root.register(only_int)
+
+    # lista wyboru funkcji
     function = ttk.Combobox(
         state="readonly",
         values=["Funkcja liniowa", "Wartosc bezwzgledna", "Wielomian",
                 "Funkcja trygonometryczna", "Zlozenie funkcji"],
-        width=25
+        width=26
     )
-    function.place(x=30, y=50)
+    function.place(x=20, y=50)
     function.set("Funkcja liniowa")
 
-    show_func_btn = ttk.Button(text="Rysuj wykres", command=lambda: draw_graph(function, root))
-    show_func_btn.place(x=60, y=80)
+    # przedzial funkcji
+    przedzial = tk.Label(root, text="Wybierz przedzial")
+    przedzial.place(x=30, y=80)
 
-    validate_float = root.register(only_float)
-    validate_int = root.register(only_int)
+    fa_label = tk.Label(root, text="a: ")
+    fa_label.place(x=30, y=100)
+    fa_val = tk.Entry(root, width=10, validate="key", validatecommand=(validate_float, '%P'))
+    fa_val.place(x=50, y=100)
 
+    fb_label = tk.Label(root, text="b: ")
+    fb_label.place(x=30, y=140)
+    fb_val = tk.Entry(root, width=10, validate="key", validatecommand=(validate_float, '%P'))
+    fb_val.place(x=50, y=140)
+
+    fa_val.insert(0, "1.5")
+    fb_val.insert(0, "-1.5")
+
+    # rysowanie funkcji
+    show_func_btn = ttk.Button(text="Rysuj wykres", command=lambda: draw_graph(function, root, fa_val, fb_val))
+    show_func_btn.place(x=42, y=170)
+
+    # przedzial interpolacji
     przedzial = tk.Label(root, text="Wybierz przedzial")
     przedzial.place(x=30, y=250)
 
@@ -132,6 +154,7 @@ def gui_interface():
     node_val = tk.Entry(root, width=10, validate="key", validatecommand=(validate_int, '%P'))
     node_val.place(x=50, y=390)
 
+    # rysowanie interpolacji
     show_inte_btn = tk.Button(text="Rysuj wykres", command=lambda: draw_interp_graph(function, root, a_val,
                                                                                      b_val, node_val))
     show_inte_btn.place(x=42, y=425)
