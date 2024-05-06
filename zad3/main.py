@@ -16,7 +16,7 @@ def console_interface():
         "5. Zlozenie 2|3x^2 + 2x^2 - 3x - 2|")
     funkcja = int(input())
 
-    if funkcja in [1, 2, 3, 4, 5]:
+    if funkcja in [1, 2, 3, 4, 5, 6]:
         wykresy.rysuj(funkcja, -1.5, 1.5)
     else:
         print("Niepoprawna funkcja")
@@ -165,5 +165,3 @@ def gui_interface():
 if __name__ == '__main__':
     gui_interface()
 
-# TODO: obliczanie bledu
-# TODO: czy blad ma byc dla wybranego punktu??
