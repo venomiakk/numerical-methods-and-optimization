@@ -3,15 +3,6 @@ import funkcje
 
 
 def simpson(f, a, b, n):
-    """
-    Przybliżenie całki oznaczonej ∫f(x)dx na przedziale [a, b] za pomocą wzoru Simpsona.
-
-    :param f: Funkcja do całkowania
-    :param a: Początek przedziału całkowania
-    :param b: Koniec przedziału całkowania
-    :param n: Liczba podprzedziałów (musi być parzysta)
-    :return: Przybliżona wartość całki
-    """
     if n % 2 != 0:
         raise ValueError("Liczba podprzedziałów n musi być parzysta.")
 
@@ -46,16 +37,11 @@ def calc(funkcja, a, b, e):
     print(f"Wynik: {wynik}"+"\n")
 
 
-# Przykład użycia:
 if __name__ == "__main__":
-    # Funkcja do całkowania
-
-    # Przedział całkowania
     a = 0
     b = np.pi
 
-    # Liczba podprzedziałów (musi być parzysta)
-    n = 2
+    n = 3
 
     wynik = calc(funkcje.sin, a, b, 0.1)
-    print(f"Przybliżona wartość całki wynosi: {wynik}")
+
