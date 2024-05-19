@@ -43,8 +43,7 @@ def calc(funkcja, a, b, e):
         wynik = nowy_wynik
 
     print(f"Iteracje: {i}")
-    print(f"Wynik: {wynik}")
-    return wynik
+    print(f"Wynik: {wynik}"+"\n")
 
 
 # Przykład użycia:
