@@ -9,7 +9,9 @@ print(
     "2. Wartość bezwzględna 2|x| \n"
     "3. Wielomian 3x^3 + 2x^2 - 3x - 2 \n"
     "4. Trygonometryczna 2sin(x)\n"
-    "5. Zlozenie 2|3x^2 + 2x^2 - 3x - 2|")
+    "5. Zlozenie 2|3x^2 + 2x^2 - 3x - 2|\n"
+    "6. (2/3)^(x-1)\n"
+    "7. wielomian x^5")
 funkcja = int(input())
 
 print("Podaj przedzial:\n a: ")
@@ -62,3 +64,19 @@ if funkcja in [1, 2, 3, 4, 5, 6]:
             legendre.gauss_legendre(funkcje.zlozenie, a, b, j)
         print("Newton-Cotes (wzór Simpsona): \n")
         newtoncotes.calc(funkcje.zlozenie, a, b, e)
+    if funkcja == 7:
+        war = sy.integrate(funkcje.maks(x), (x, a, b))
+        print("\nFaktyczna wartosc: " + str(war))
+        print("\nGauss-Legendre: \n")
+        for j in range(2, 6):
+            legendre.gauss_legendre(funkcje.maks, a, b, j)
+        print("Newton-Cotes (wzór Simpsona): \n")
+        newtoncotes.calc(funkcje.maks, a, b, e)
+    if funkcja == 6:
+        war = sy.integrate(funkcje.wykladnicza(x), (x, a, b))
+        print("\nFaktyczna wartosc: " + str(war))
+        print("\nGauss-Legendre: \n")
+        for j in range(2, 6):
+            legendre.gauss_legendre(funkcje.wykladnicza, a, b, j)
+        print("Newton-Cotes (wzór Simpsona): \n")
+        newtoncotes.calc(funkcje.wykladnicza, a, b, e)

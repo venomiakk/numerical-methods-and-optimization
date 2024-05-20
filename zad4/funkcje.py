@@ -19,3 +19,9 @@ def wielomian(x):
 
 def zlozenie(x):
     return 2 * abs(3 * x ** 3 + 2 * x ** 2 - 3 * x - 2)
+
+def maks(x):
+    return x**6
+
+def wykladnicza(x):
+    return (2/3)**(x-1)
