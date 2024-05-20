@@ -24,7 +24,7 @@ def calc(funkcja, a, b, e):
     n = 2
     wynik = simpson(funkcja, a, b, n)
     dokladnosc_osiagnieta = False
-    i = 0
+    i = 1
     while not dokladnosc_osiagnieta:
         i += 1
         n *= 2
@@ -34,6 +34,8 @@ def calc(funkcja, a, b, e):
         wynik = nowy_wynik
 
     print(f"Iteracje: {i}")
+    print(f'Ilość podprzedziałów: {n}')
+    print(f'Dokładność: {e}')
     print(f"Wynik: {wynik}"+"\n")
 
 

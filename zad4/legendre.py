@@ -12,7 +12,7 @@ def gauss_legendre(f, a, b, n):
 
     integral = 0.5 * (b - a) * np.sum(w * f(t))
 
-    print(f"Ilosc wezłów: {n}")
+    print(f"Ilość węzłów: {n}")
     print(f"Wynik: {integral}" + "\n")
 
 
