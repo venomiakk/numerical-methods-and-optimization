@@ -25,9 +25,15 @@ def obliczanieWartosciFunkcji(x, typ):
     return float(war)
 
 
+def linoiwa(x):
+    return horner.oblicz([1.0 / 3.0, 2.0], x)
+
 def x2(x):
     return x ** 2
 
+
+def wielomian(x):
+    return horner.oblicz([3.0, 2.0, -3.0, -2.0], x)
 
 def modul(x):
     return abs(x)
@@ -43,4 +49,4 @@ def zlozenie(x):
 
 
 def test(x):
-    return abs(x*x*x)
+    return (3*x) - 5

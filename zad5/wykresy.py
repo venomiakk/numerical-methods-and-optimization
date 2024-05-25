@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import funkcje
+import horner
 
 
 def rysuj(typ, a, b, interpolacja=0, nodes=0, funkcja=0):
@@ -12,6 +13,7 @@ def rysuj(typ, a, b, interpolacja=0, nodes=0, funkcja=0):
     @param nodes: wezly interpolacji
     @param funkcja: funkcja interpolacyjna
     """
+    #TODO func jako albo lista albo typ funkcji
     a = float(a)
     b = float(b)
     x_values = np.arange(start=a if a < b else b,
@@ -54,3 +56,23 @@ def rysuj(typ, a, b, interpolacja=0, nodes=0, funkcja=0):
 
     plt.show()
     return fig
+
+
+def poglad(wsp, a, b):
+    a = float(a)
+    b = float(b)
+    x_values = np.arange(start=a if a < b else b,
+                         stop=b if b > a else a,
+                         step=0.01)
+    y_values = []
+    for i in x_values:
+        y_values.append(horner.oblicz(wsp, i))
+
+
+    fig, ax = plt.subplots()
+    ax.plot(x_values, y_values, label="Funkcja aproksymowana")
+    ax.grid(True)
+    ax.axhline(0, color='black', linewidth=0.5)
+    ax.axvline(0, color='black', linewidth=0.5)
+
+    plt.show()

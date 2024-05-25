@@ -1,5 +1,5 @@
 import sympy as sp
-
+import horner
 
 def coefficients(k):
     x = sp.symbols('x')
@@ -20,3 +20,8 @@ def coefficients(k):
     coefficients = [float(coef) for coef in coefficients]
 
     return coefficients
+
+
+if __name__=='__main__':
+    cs = coefficients(4)
+    print(horner.oblicz(cs, 2))

@@ -133,7 +133,10 @@ def gui_interface():
         0 - stopien - tj. Px gdzie x to stopien czyli jeden z wielomianow Legendre'a
         1 - blad - tj. zwiekszanie iteracyjnie stopnia poki blad nie jest mniejszy niz zadany
     '''
-
+    if mode == 0:
+        print("Stopien wielomianu")
+    else:
+        print("iteeracyjnie blad")
     # rysowanie aproksymacji
     show_approx_btn = tk.Button(text="Rysuj wykres",
                                 command=lambda: draw_approx(function, mode, mode_input, root, a_val,
