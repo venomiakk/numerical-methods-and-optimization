@@ -5,6 +5,8 @@ import wykresy
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import legendre
 import horner
+import approx
+import funkcje
 
 
 def draw_graph(selection, root, fa_val, fb_val):
@@ -20,23 +22,53 @@ def draw_graph(selection, root, fa_val, fb_val):
 
 
 def draw_approx(selected_func, selected_mode, mode_input, root, a_val, b_val, node_val):
-    print("draw approx")
-    f = selected_func.current() + 1
+    """
+    @param selected_func: aproksymowana funkcja
+    @param selected_mode: 0 - stopien wielomianu, 1 - blad aproksymacji
+    @param mode_input: k stopien wielomianu lub wartosc bledu
+    @param root: okienko
+    @param a_val: poczatek przedzialu
+    @param b_val: koniec przedzialu
+    @param node_val: liczba wezlow
+    @return:
+    """
+    # print("draw approx")
+    f_type = selected_func.current() + 1
+    f = funkcje.wybor_funkcji(f_type)
     mode = selected_mode.current()
-    mode_val = mode_input.get() #string na ten moment
+    mode_val = mode_input.get()
+    if mode == 0:
+        mode_val = int(mode_val)
+    else:
+        mode_val = float(mode_val)
+
     a = float(a_val.get())
     b = float(b_val.get())
     nodes = int(node_val.get())
-    print(f"funkcja {f}")
-    print(f"tryb {mode}")
-    print(f"wart trybu {mode_val}, {type(mode_val)}")
-    print(f"a {a}")
-    print(f"b {b}")
-    print(f"wezly {nodes}")
-    print("przeksztalcenie przedzialu:")
-    y = horner.oblicz(legendre.coefficients(int(mode_val)), a)
-    y = ((2*y)-a-b) / (b-a)
-    print(y)
+    # print(f"funkcja {f}, {type(f)}")
+    # print(f"tryb {mode}")
+    # print(f"wart trybu {mode_val}, {type(mode_val)}")
+    # print(f"a {a}")
+    # print(f"b {b}")
+    # print(f"wezly {nodes}")
+    if mode == 0:
+        wsp, err = approx.wsp_approx(mode_val, f, a, b, nodes)
+        print(wsp)
+        print(err)
+        fig = wykresy.rysuj_approx(wsp, mode_val, a, b, f)
+        canvas = FigureCanvasTkAgg(fig, master=root)
+        canvas.draw()
+
+        canvas.get_tk_widget().place(x=220, y=50)
+
+        flabel = tk.Label(root, text=f"wartosc: {err}", width=6)
+        flabel.place(x=220, y=550)
+    else:
+        print("blad")
+
+
+def approximation(root, funkcja, selected_mode, mode_input):
+    print("asda")
 
 def only_int(P):
     if re.match("^[0-9]*$", P):

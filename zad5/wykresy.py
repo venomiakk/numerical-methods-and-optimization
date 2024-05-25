@@ -2,18 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import funkcje
 import horner
+import approx
 
 
-def rysuj(typ, a, b, interpolacja=0, nodes=0, funkcja=0):
+def rysuj(typ, a, b):
     """
     @param typ: rodzaj funkcji: 1 - 5
     @param a: lewy przedzial
     @param b: prawy przedzial
-    @param interpolacja: 0 - nie, w innym wypadku tak
-    @param nodes: wezly interpolacji
-    @param funkcja: funkcja interpolacyjna
     """
-    #TODO func jako albo lista albo typ funkcji
     a = float(a)
     b = float(b)
     x_values = np.arange(start=a if a < b else b,
@@ -25,7 +22,7 @@ def rysuj(typ, a, b, interpolacja=0, nodes=0, funkcja=0):
     for i in x_values:
         y_values.append(funkcje.obliczanieWartosciFunkcji(i, typ))
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(6, 4))
     ax.plot(x_values, y_values, label="Funkcja aproksymowana")
 
     ax.set_title('Wykres funkcji')
@@ -40,16 +37,6 @@ def rysuj(typ, a, b, interpolacja=0, nodes=0, funkcja=0):
     elif typ == 5:
         ax.set_title(f'Wykres funkcji 2|3x^2 + 2x^2 - 3x - 2|')
 
-    # rysowanie wielomianu interpolacyjnego
-    if interpolacja != 0:
-        iy_values = []
-        for i in x_values:
-            iy_values.append(funkcja(i))
-        ax.plot(x_values, iy_values, label="Funkcja interpolacyjna", linestyle="--")
-        plt.legend()
-        for i in nodes:
-            ax.scatter(i, funkcje.obliczanieWartosciFunkcji(i, typ), color="green", s=25, zorder=3)
-
     ax.grid(True)
     ax.axhline(0, color='black', linewidth=0.5)
     ax.axvline(0, color='black', linewidth=0.5)
@@ -58,7 +45,8 @@ def rysuj(typ, a, b, interpolacja=0, nodes=0, funkcja=0):
     return fig
 
 
-def poglad(wsp, a, b):
+def rysuj_approx(awsp, k, a, b, f):
+    print(type(f))
     a = float(a)
     b = float(b)
     x_values = np.arange(start=a if a < b else b,
@@ -66,13 +54,21 @@ def poglad(wsp, a, b):
                          step=0.01)
     y_values = []
     for i in x_values:
-        y_values.append(horner.oblicz(wsp, i))
+        y_values.append(approx.wart_wiel(k, i, awsp))
 
+    y_values2 = []
+    for i in x_values:
+        if int == type(f):
+            y_values2.append(funkcje.obliczanieWartosciFunkcji(i, f))
+        else:
+            y_values2.append(f(i))
 
-    fig, ax = plt.subplots()
-    ax.plot(x_values, y_values, label="Funkcja aproksymowana")
+    fig, ax = plt.subplots(figsize=(6, 4))
+    ax.plot(x_values, y_values2, label="funkcja aprosymowana")
+    ax.plot(x_values, y_values, label="aproksymacja", linestyle="--")
     ax.grid(True)
     ax.axhline(0, color='black', linewidth=0.5)
     ax.axvline(0, color='black', linewidth=0.5)
 
     plt.show()
+    return fig

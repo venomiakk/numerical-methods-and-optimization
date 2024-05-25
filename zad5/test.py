@@ -18,7 +18,7 @@ def trigonometric(x):
 
 # Schemat Hornera
 def horner_scheme(coefficients, x):
-    result = coefficients[0]  # Pierwszy współczynnik
+    result = coefficients[0]
     for coef in coefficients[1:]:
         result = result * x + coef
     return result
@@ -49,15 +49,17 @@ interval_end = float(input("Podaj koniec przedziału aproksymacji: "))
 degree = int(input("Podaj stopień wielomianu aproksymującego: "))
 
 # Przeskalowanie funkcji na przedział [-1, 1]
-def rescaled_function(x):
-    return function((interval_end - interval_start) / 2 * x + (interval_end + interval_start) / 2)
+def rescaled_function(t):
+    x = 0.5 * (interval_end - interval_start) * t + 0.5 * (interval_end + interval_start)
+    return function(x)
 
 # Obliczanie współczynników wielomianów Legendre'a
 coefficients = []
 for n in range(degree + 1):
     Pn = legendre(n)
-    coefficient, _ = quad(lambda x: rescaled_function(x) * Pn(x), -1, 1)
-    coefficient *= (2 * n + 1) / 2
+    numerator, _ = quad(lambda t: rescaled_function(t) * Pn(t), -1, 1)
+    denominator, _ = quad(lambda t: Pn(t)**2, -1, 1)
+    coefficient = numerator / denominator
     coefficients.append(coefficient)
 
 # Obliczanie wartości aproksymowanego wielomianu Legendre'a
@@ -78,5 +80,10 @@ plt.grid(True)
 plt.show()
 
 # Obliczanie błędu aproksymacji
-approximation_error = np.sqrt(np.mean((y_values_original - y_values_approx)**2))
+def error_function(t):
+    x = 0.5 * (interval_end - interval_start) * t + 0.5 * (interval_end + interval_start)
+    return (function(x) - horner_scheme(coefficients, t))**2
+
+approximation_error, _ = quad(error_function, -1, 1)
+approximation_error = np.sqrt(approximation_error)
 print("Błąd aproksymacji:", approximation_error)
