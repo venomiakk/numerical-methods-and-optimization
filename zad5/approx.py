@@ -45,20 +45,18 @@ def wsp_approx(k, f, a, b, l_wezlow):
     x = np.array(fileIO.read(l_wezlow)[1])
 
     t = transformToAB(x, a, b)
-
+    wt = transformToAB(w, a, b)
     # print("wsp")
 
     for i in range(k, -1, -1):
-        integral = np.sum(w * f(x) * horner.oblicz(legendre.coefficients(i), x))
-        # print(integral)
-        # integral = ((2*integral)-a-b) / (b-a)
-        # print(f"calka {integral}")
+        # integral = np.sum(w * f(x) * horner.oblicz(legendre.coefficients(i), x))
+        integral = np.sum(w * f(t) * horner.oblicz(legendre.coefficients(i), t))
+
         integral *= (((2 * i) + 1) / 2)
         wsp.append(integral)
 
-    # print(wsp)
-    # wykresy.poglad(wsp, a, b, f)
-    rysf(wsp, a, b, f, k)
+
+    # rysf(wsp, a, b, f, k)
     err = blad(f, wsp, l_wezlow, k)
     return wsp, err
 
@@ -66,7 +64,8 @@ def wsp_approx(k, f, a, b, l_wezlow):
 def blad(f, awsp, l_wezlow, k):
     w = np.array(fileIO.read(l_wezlow)[0])
     x = np.array(fileIO.read(l_wezlow)[1])
-    integral = np.sum((w * (f(x) - wart_wiel(k, x, awsp))) ** 2)
+    # integral = np.sum((w * (f(x) - wart_wiel(k, x, awsp))) ** 2)
+    integral = np.sum(((f(x) - wart_wiel(k, x, awsp))) ** 2)
     integral = np.sqrt(integral)
     # print(f"blad {integral}")
     return integral

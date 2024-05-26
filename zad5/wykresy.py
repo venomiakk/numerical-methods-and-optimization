@@ -46,7 +46,6 @@ def rysuj(typ, a, b):
 
 
 def rysuj_approx(awsp, k, a, b, f):
-    print(type(f))
     a = float(a)
     b = float(b)
     x_values = np.arange(start=a if a < b else b,

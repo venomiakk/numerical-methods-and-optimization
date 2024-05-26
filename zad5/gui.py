@@ -37,11 +37,6 @@ def draw_approx(selected_func, selected_mode, mode_input, root, a_val, b_val, no
     f = funkcje.wybor_funkcji(f_type)
     mode = selected_mode.current()
     mode_val = mode_input.get()
-    if mode == 0:
-        mode_val = int(mode_val)
-    else:
-        mode_val = float(mode_val)
-
     a = float(a_val.get())
     b = float(b_val.get())
     nodes = int(node_val.get())
@@ -52,6 +47,7 @@ def draw_approx(selected_func, selected_mode, mode_input, root, a_val, b_val, no
     # print(f"b {b}")
     # print(f"wezly {nodes}")
     if mode == 0:
+        mode_val = int(mode_val)
         wsp, err = approx.wsp_approx(mode_val, f, a, b, nodes)
         print(wsp)
         print(err)
@@ -61,14 +57,42 @@ def draw_approx(selected_func, selected_mode, mode_input, root, a_val, b_val, no
 
         canvas.get_tk_widget().place(x=220, y=50)
 
-        flabel = tk.Label(root, text=f"wartosc: {err}", width=6)
-        flabel.place(x=220, y=550)
+        frame = tk.Frame(root, width=700, height=300, bg='#f0f0f0')
+        frame.place(x=220, y=500)
+
+        wsplabel = tk.Label(root, text=f"Wspolczynniki: {wsp}", wraplength=600)
+        wsplabel.place(x=220, y=500)
+        errlabel = tk.Label(root, text=f"Blad: {err}")
+        errlabel.place(x=220, y=550)
     else:
-        print("blad")
+        mode_val = float(mode_val)
+        dokladnosc = True
+        wsp = []
+        err = 0
+        k = 0
+        while dokladnosc:
+            wsp, err = approx.wsp_approx(k, f, a, b, nodes)
+            k += 1
+            if err < mode_val:
+                dokladnosc = False
+
+        fig = wykresy.rysuj_approx(wsp, k-1, a, b, f)
+        canvas = FigureCanvasTkAgg(fig, master=root)
+        canvas.draw()
+        canvas.get_tk_widget().place(x=220, y=50)
+        frame = tk.Frame(root, width=700, height=300, bg='#f0f0f0')
+        frame.place(x=220, y=500)
+        wsplabel = tk.Label(root, text=f"Wspolczynniki: {wsp}", wraplength=600)
+        wsplabel.place(x=220, y=500)
+        errlabel = tk.Label(root, text=f"Blad: {err}")
+        errlabel.place(x=220, y=550)
+        itlabel = tk.Label(root, text=f"Stopien wielomianu: {k-1}")
+        itlabel.place(x=220, y=570)
 
 
 def approximation(root, funkcja, selected_mode, mode_input):
     print("asda")
+
 
 def only_int(P):
     if re.match("^[0-9]*$", P):
@@ -135,13 +159,16 @@ def gui_interface():
 
     a_label = tk.Label(root, text="a: ")
     a_label.place(x=30, y=280)
+
     a_val = tk.Entry(root, width=10, validate="key", validatecommand=(validate_float, '%P'))
     a_val.place(x=50, y=280)
+    a_val.insert(0, "-1")
 
     b_label = tk.Label(root, text="b: ")
     b_label.place(x=30, y=310)
     b_val = tk.Entry(root, width=10, validate="key", validatecommand=(validate_float, '%P'))
     b_val.place(x=50, y=310)
+    b_val.insert(0, "1")
 
     node_label = tk.Label(root, text="Podaj liczbe wezlow")
     node_label.place(x=30, y=360)
@@ -178,5 +205,5 @@ def gui_interface():
     root.mainloop()
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     gui_interface()
