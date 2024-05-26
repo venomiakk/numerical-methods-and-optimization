@@ -56,7 +56,7 @@ def wsp_approx(k, f, a, b, l_wezlow):
         wsp.append(integral)
 
 
-    # rysf(wsp, a, b, f, k)
+    rysf(wsp, a, b, f, k)
     err = blad(f, wsp, l_wezlow, k)
     return wsp, err
 
@@ -95,6 +95,8 @@ def rysf(wsp, a, b, f, k):
     fig, ax = plt.subplots()
     ax.plot(x_values, y_values2, label="aprosymowana")
     ax.plot(x_values, y_values, label="aproksymacja", linestyle="--")
+    plt.legend()
+    ax.set_title(f"Stopien wielomianu: {k}")
     ax.grid(True)
     ax.axhline(0, color='black', linewidth=0.5)
     ax.axvline(0, color='black', linewidth=0.5)

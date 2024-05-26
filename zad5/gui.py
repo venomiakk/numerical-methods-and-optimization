@@ -51,7 +51,7 @@ def draw_approx(selected_func, selected_mode, mode_input, root, a_val, b_val, no
         wsp, err = approx.wsp_approx(mode_val, f, a, b, nodes)
         print(wsp)
         print(err)
-        fig = wykresy.rysuj_approx(wsp, mode_val, a, b, f)
+        fig = wykresy.rysuj_approx(wsp, mode_val, a, b, f, f_type)
         canvas = FigureCanvasTkAgg(fig, master=root)
         canvas.draw()
 
@@ -76,7 +76,7 @@ def draw_approx(selected_func, selected_mode, mode_input, root, a_val, b_val, no
             if err < mode_val:
                 dokladnosc = False
 
-        fig = wykresy.rysuj_approx(wsp, k-1, a, b, f)
+        fig = wykresy.rysuj_approx(wsp, k-1, a, b, f, f_type)
         canvas = FigureCanvasTkAgg(fig, master=root)
         canvas.draw()
         canvas.get_tk_widget().place(x=220, y=50)
@@ -89,9 +89,6 @@ def draw_approx(selected_func, selected_mode, mode_input, root, a_val, b_val, no
         itlabel = tk.Label(root, text=f"Stopien wielomianu: {k-1}")
         itlabel.place(x=220, y=570)
 
-
-def approximation(root, funkcja, selected_mode, mode_input):
-    print("asda")
 
 
 def only_int(P):
@@ -124,8 +121,8 @@ def gui_interface():
     # lista wyboru funkcji
     function = ttk.Combobox(
         state="readonly",
-        values=["Funkcja liniowa", "Wartosc bezwzgledna", "Wielomian",
-                "Funkcja trygonometryczna", "Zlozenie funkcji"],
+        values=["Funkcja liniowa", "Wartosc bezwzgledna", "Wielomian st. 3",
+                "Funkcja trygonometryczna", "Zlozenie funkcji", "Wielomian st. 4"],
         width=26
     )
     function.place(x=20, y=50)
@@ -145,14 +142,12 @@ def gui_interface():
     fb_val = tk.Entry(root, width=10, validate="key", validatecommand=(validate_float, '%P'))
     fb_val.place(x=50, y=140)
 
-    fa_val.insert(0, "1.5")
-    fb_val.insert(0, "-1.5")
+    fa_val.insert(0, "-1")
+    fb_val.insert(0, "1")
 
     # rysowanie funkcji
     show_func_btn = ttk.Button(text="Rysuj wykres", command=lambda: draw_graph(function, root, fa_val, fb_val))
     show_func_btn.place(x=42, y=170)
-
-    # TODO APROKSYMACJA
 
     przedzial = tk.Label(root, text="Wybierz przedzial")
     przedzial.place(x=30, y=250)
@@ -192,10 +187,7 @@ def gui_interface():
         0 - stopien - tj. Px gdzie x to stopien czyli jeden z wielomianow Legendre'a
         1 - blad - tj. zwiekszanie iteracyjnie stopnia poki blad nie jest mniejszy niz zadany
     '''
-    if mode == 0:
-        print("Stopien wielomianu")
-    else:
-        print("iteeracyjnie blad")
+
     # rysowanie aproksymacji
     show_approx_btn = tk.Button(text="Rysuj wykres",
                                 command=lambda: draw_approx(function, mode, mode_input, root, a_val,

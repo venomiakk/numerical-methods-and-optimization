@@ -22,7 +22,7 @@ def obliczanieWartosciFunkcji(x, typ):
     if typ == 5:
         war = zlozenie(x)
     if typ == 6:
-        war = test(x)
+        war = wielomian2(x)
     return float(war)
 
 
@@ -42,7 +42,7 @@ def wybor_funkcji(typ):
     if typ == 5:
         return zlozenie
     if typ == 6:
-        return test
+        return wielomian2
 
     return test
 
@@ -74,6 +74,9 @@ def zlozenie(x):
 
 def test(x):
     return (3 * x) - 5
+
+def wielomian2(x):
+    return horner.oblicz([1, 0, -3, 2, 2], x)
 
 if __name__=="__main__":
     f= wybor_funkcji(0)
