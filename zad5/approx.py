@@ -6,23 +6,6 @@ import horner
 import wykresy
 import matplotlib.pyplot as plt
 
-def f1(x):
-    return (3 * x) - 5
-
-
-def f2(x):
-    return horner.oblicz([3.0, 2.0, -3.0, -2.0], x)
-
-
-def f3(x):
-    return x ** 2
-
-
-def f4(x):
-    return horner.oblicz([1, -1, -1, -1, 1], x)
-
-def f5(x):
-    return np.sin(x)
 
 
 def transformTO11(x, a, b):
@@ -48,8 +31,9 @@ def wsp_approx(k, f, a, b, l_wezlow):
     wt = transformToAB(w, a, b)
     # print("wsp")
 
+
     for i in range(k, -1, -1):
-        # integral = np.sum(w * f(x) * horner.oblicz(legendre.coefficients(i), x))
+        # integral = np.sum(w * f(t) * t)
         integral = np.sum(w * f(t) * horner.oblicz(legendre.coefficients(i), t))
 
         integral *= (((2 * i) + 1) / 2)
@@ -57,18 +41,18 @@ def wsp_approx(k, f, a, b, l_wezlow):
 
 
     rysf(wsp, a, b, f, k)
-    err = blad(f, wsp, l_wezlow, k)
+    err = blad(f, wsp, l_wezlow, k, t)
     return wsp, err
 
 
-def blad(f, awsp, l_wezlow, k):
+def blad(f, awsp, l_wezlow, k, t):
     w = np.array(fileIO.read(l_wezlow)[0])
     x = np.array(fileIO.read(l_wezlow)[1])
     # integral = np.sum((w * (f(x) - wart_wiel(k, x, awsp))) ** 2)
-    integral = np.sum(((f(x) - wart_wiel(k, x, awsp))) ** 2)
-    integral = np.sqrt(integral)
-    # print(f"blad {integral}")
-    return integral
+    err = np.sum(w*(f(t) - wart_wiel(k, t, awsp)) ** 2)
+    err = np.sqrt(err)
+
+    return err
 
 
 def wart_wiel(k, x, wsp):
@@ -103,12 +87,3 @@ def rysf(wsp, a, b, f, k):
 
     plt.show()
 
-if __name__ == "__main__":
-    wsp_approx(5, f2, -3, 3, 5)
-    # wsp = [0.7777778813889854, -1.3333317791669566, -1.8131946857622705e-06, 2.0740740740717065]
-    # wsp = wsp[::-1]
-    # wykresy.poglad(wsp, -1, 1, f4)
-    # print(horner.oblicz(legendre.coefficients(3), 2))
-    # print("dsa")
-    # for i in  range(2, 5):
-    #     print(i)

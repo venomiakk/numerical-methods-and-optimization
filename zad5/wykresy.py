@@ -65,7 +65,7 @@ def rysuj_approx(awsp, k, a, b, f, typ):
             y_values2.append(f(i))
 
     fig, ax = plt.subplots(figsize=(6, 4))
-    ax.plot(x_values, y_values2, label="funkcja aprosymowana")
+    ax.plot(x_values, y_values2, label="Funkcja aproksymowana")
     ax.plot(x_values, y_values, label="Aproksymacja", linestyle="--")
     plt.legend()
     ax.set_title('Wykres funkcji')

@@ -76,7 +76,7 @@ def test(x):
     return (3 * x) - 5
 
 def wielomian2(x):
-    return horner.oblicz([1, 0, -3, 2, 2], x)
+    return horner.oblicz([1.0, 0.0, -3.0, 2.0, 2.0], x)
 
 if __name__=="__main__":
     f= wybor_funkcji(0)
